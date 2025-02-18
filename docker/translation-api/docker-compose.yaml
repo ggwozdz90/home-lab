@@ -1,0 +1,22 @@
+services:
+  translation-api:
+    image: ggwozdz/translation-api:latest
+    environment:
+      - LOG_LEVEL=INFO
+      - DEVICE=cpu
+      - FASTAPI_HOST=0.0.0.0
+      - FASTAPI_PORT=9003
+      - MODEL_IDLE_TIMEOUT=60
+      - TRANSLATION_MODEL_NAME=facebook/seamless-m4t-v2-large
+      - TRANSLATION_MODEL_DOWNLOAD_PATH=translation_models
+    ports:
+      - "9003:9003"
+    volumes:
+      - ${DOCKER_VOLUMES}/translation-api/data/translation_models:/app/translation_models
+
+volumes:
+  translation-api-data:
+    driver_opts:
+      type: none
+      device: ${DOCKER_VOLUMES}/translation-api/data
+      o: bind

@@ -1,0 +1,25 @@
+services:
+  portainer:
+    extends:
+      file: ./portainer/docker-compose.yaml
+      service: portainer
+
+  watchtower:
+    extends:
+      file: ./watchtower/docker-compose.yaml
+      service: watchtower
+
+  speech-to-text-api:
+    extends:
+      file: ./speech-to-text-api/docker-compose.yaml
+      service: speech-to-text-api
+
+  summarization-api:
+    extends:
+      file: ./summarization-api/docker-compose.yaml
+      service: summarization-api
+
+  translation-api:
+    extends:
+      file: ./translation-api/docker-compose.yaml
+      service: translation-api

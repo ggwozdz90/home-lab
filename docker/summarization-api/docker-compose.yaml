@@ -1,0 +1,24 @@
+services:
+  summarization-api:
+    image: ggwozdz/summarization-api:latest
+    container_name: summarization-api
+    restart: always
+    environment:
+      - LOG_LEVEL=INFO
+      - DEVICE=cpu
+      - FASTAPI_HOST=0.0.0.0
+      - FASTAPI_PORT=9002
+      - MODEL_IDLE_TIMEOUT=60
+      - SUMMARIZATION_MODEL_NAME=facebook/bart-large-cnn
+      - SUMMARIZATION_MODEL_DOWNLOAD_PATH=summarization_models
+    ports:
+      - "9002:9002"
+    volumes:
+      - ${DOCKER_VOLUMES}/summarization-api/data/summarization_models:/app/summarization_models
+
+volumes:
+  speech-to-text-api-data:
+    driver_opts:
+      type: none
+      device: ${DOCKER_VOLUMES}/summarization-api/data
+      o: bind
