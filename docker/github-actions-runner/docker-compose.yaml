@@ -1,0 +1,24 @@
+services:
+  github-actions-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        RUNNER_VERSION: ${RUNNER_VERSION:-2.311.0}
+    restart: unless-stopped
+    environment:
+      - GITHUB_RUNNER_NAME=${GITHUB_RUNNER_NAME}
+      - GITHUB_URL=${GITHUB_URL}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_RUNNER_LABELS=${GITHUB_RUNNER_LABELS:-self-hosted,Linux,X64,docker}
+      - GITHUB_RUNNER_GROUP=${GITHUB_RUNNER_GROUP:-Default}
+      - RUNNER_ALLOW_RUNASROOT=1
+    volumes:
+      - ${DOCKER_VOLUMES}/github-actions-runner/_work:/home/runner/_work
+      - ${DOCKER_VOLUMES}/github-actions-runner/.runner:/home/runner/.runner
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      resources:
+        limits:
+          cpus: ${RUNNER_CPU_LIMIT:-1.0}
+          memory: ${RUNNER_MEMORY_LIMIT:-2G}

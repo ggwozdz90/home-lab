@@ -23,3 +23,8 @@ services:
     extends:
       file: ./translation-api/docker-compose.yaml
       service: translation-api
+
+  github-actions-runner:
+    extends:
+      file: ./github-actions-runner/docker-compose.yaml
+      service: github-actions-runner

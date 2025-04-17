@@ -29,3 +29,4 @@ This repository sets up a multi-container home lab using Docker and Docker Compo
 - **SpeechToTextAPI**: Converts speech to text using OpenAI Whisper model. Use port [9001](http://localhost:9001/docs) to access.
 - **SummarizationAPI**: Summarizes text using Facebook's Bart Large CNN model. Use port [9002](http://localhost:9002/docs) to access.
 - **TranslationAPI**: Translates text using Facebook's Seamless M4T v2 Large model. Use port [9003](http://localhost:9003/docs) to access.
+- **GitHub Actions Runner**: Self-hosted runner for GitHub Actions workflows. For complete documentation, see [GitHub Actions Runner Documentation](docker/github-actions-runner/README.md).
