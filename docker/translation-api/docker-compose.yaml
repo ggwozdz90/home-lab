@@ -1,6 +1,8 @@
 services:
   translation-api:
     image: ggwozdz/translation-api:latest
+    container_name: translation-api
+    restart: always
     environment:
       - LOG_LEVEL=INFO
       - DEVICE=cpu
