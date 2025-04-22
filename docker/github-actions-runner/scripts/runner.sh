@@ -5,6 +5,12 @@ set -e
 RUNNER_WORK_DIR=/home/runner/_work
 RUNNER_CONFIG_DIR=/home/runner/actions-runner
 
+# Fix Docker socket permissions
+if [ -e "/var/run/docker.sock" ]; then
+  echo "Setting proper permissions for Docker socket..."
+  sudo chmod 666 /var/run/docker.sock
+fi
+
 # Extract repository name from GITHUB_URL
 REPOSITORY=$(echo ${GITHUB_URL} | sed 's/.*github.com\/\(.*\)/\1/' | sed 's/\.git$//')
 ACCESS_TOKEN=${GITHUB_TOKEN}

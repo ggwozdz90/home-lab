@@ -24,7 +24,19 @@ services:
       file: ./translation-api/docker-compose.yaml
       service: translation-api
 
-  github-actions-runner:
+  github-actions-runner-speech-to-text-api:
     extends:
       file: ./github-actions-runner/docker-compose.yaml
       service: github-actions-runner
+    environment:
+      - GITHUB_RUNNER_NAME=${SPEECH_TO_TEXT_GITHUB_RUNNER_NAME}
+      - GITHUB_URL=${SPEECH_TO_TEXT_GITHUB_URL}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_RUNNER_LABELS=${SPEECH_TO_TEXT_GITHUB_RUNNER_LABELS}
+      - GITHUB_RUNNER_GROUP=${SPEECH_TO_TEXT_GITHUB_RUNNER_GROUP}
+      - RUNNER_CPU_LIMIT=${SPEECH_TO_TEXT_RUNNER_CPU_LIMIT}
+      - RUNNER_MEMORY_LIMIT=${SPEECH_TO_TEXT_RUNNER_MEMORY_LIMIT}
+    volumes:
+      - ${DOCKER_VOLUMES}/github-actions-runner-speech-to-text-api/_work:/home/runner/_work
+      - ${DOCKER_VOLUMES}/github-actions-runner-speech-to-text-api/.runner:/home/runner/.runner
+      - /var/run/docker.sock:/var/run/docker.sock
