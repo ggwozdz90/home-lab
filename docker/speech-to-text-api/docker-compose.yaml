@@ -1,11 +1,11 @@
 services:
   speech-to-text-api:
-    image: ggwozdz/speech-to-text-api:latest
+    image: ggwozdz/speech-to-text-api:v0.15.0-cuda128
     container_name: speech-to-text-api
     restart: always
     environment:
       - LOG_LEVEL=INFO
-      - DEVICE=cpu
+      - DEVICE=cuda
       - FILE_UPLOAD_PATH=uploaded_files
       - DELETE_FILES_AFTER_TRANSCRIPTION=true
       - FASTAPI_HOST=0.0.0.0
@@ -22,6 +22,13 @@ services:
       - ${DOCKER_VOLUMES}/speech-to-text-api/data/transcription_models:/app/transcription_models
       - ${DOCKER_VOLUMES}/speech-to-text-api/data/translation_models:/app/translation_models
       - ${DOCKER_VOLUMES}/speech-to-text-api/data/uploaded_files:/app/uploaded_files
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
 
 volumes:
   speech-to-text-api-data:
