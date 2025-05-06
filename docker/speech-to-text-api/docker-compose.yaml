@@ -10,7 +10,7 @@ services:
       - DELETE_FILES_AFTER_TRANSCRIPTION=true
       - FASTAPI_HOST=0.0.0.0
       - FASTAPI_PORT=9001
-      - MODEL_IDLE_TIMEOUT=60
+      - MODEL_IDLE_TIMEOUT=300
       - SPEECH_TO_TEXT_MODEL_NAME=openai/whisper
       - SPEECH_TO_TEXT_MODEL_TYPE=turbo
       - SPEECH_TO_TEXT_MODEL_DOWNLOAD_PATH=transcription_models
