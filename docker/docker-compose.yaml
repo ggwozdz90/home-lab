@@ -23,6 +23,11 @@ services:
     extends:
       file: ./translation-api/docker-compose.yaml
       service: translation-api
+
+  embed-api:
+    extends:
+      file: ./embed-api/docker-compose.yaml
+      service: embed-api
 #  speech-to-text-api-github-actions-runner:
 #    extends:
 #      file: ./speech-to-text-api-github-actions-runner/docker-compose.yaml

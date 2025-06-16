@@ -1,0 +1,21 @@
+services:
+  embed-api:
+    image: ggwozdz/embed-api:gpu-latest
+    container_name: embed-api
+    restart: always
+    environment:
+      - LOG_LEVEL=INFO
+      - DEVICE=cuda
+      - FASTAPI_HOST=0.0.0.0
+      - FASTAPI_PORT=9004
+      - MODEL_IDLE_TIMEOUT=300
+      - EMBEDDING_MODEL_NAME=BAAI/bge-m3
+    ports:
+      - "9004:9004"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
